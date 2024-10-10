@@ -27,7 +27,7 @@ jobs:
       - name: Output things
       # echo Synced API KEY: ${{ secrets.VAULT_SYNCED_API_KEY }} | sed 's/./& /g'
         run: |
-          echo APP Secret: ${{ env.APP_A_API_KEY }}  | sed 's/./& /g'
+          echo APP Secret: ${{ env.APP_SECRET }}  | sed 's/./& /g'
           
 
 
