@@ -12,9 +12,9 @@ jobs:
         uses: hashicorp/vault-action@v2
         with:
           method: jwt
-          role: ${{ env.VAULT_OIDC_ROLE }}
-          url: ${{ env.VAULT_URL }}
-          namespace: ${{env.VAULT_NAMESPACE }}
+          role: ${{ vars.VAULT_OIDC_ROLE }}
+          url: ${{ vars.VAULT_URL }}
+          namespace: ${{vars.VAULT_NAMESPACE }}
           # role: ${{ secrets.VAULT_OIDC_ROLE }}
           # url: ${{ secrets.VAULT_URL }}
           secrets: |
