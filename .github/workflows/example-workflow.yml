@@ -8,6 +8,11 @@ jobs:
       id-token: write # This is required for requesting the JWT
       contents: read  # This is required for actions/checkout
     steps:
+      - name: Debug - Output Vault Variables
+        run: |
+          echo "VAULT_OIDC_ROLE: ${{ vars.VAULT_OIDC_ROLE }}"
+          echo "VAULT_URL: ${{ vars.VAULT_URL }}"
+          echo "VAULT_NAMESPACE: ${{ vars.VAULT_NAMESPACE }}"
       - name: Import Secrets
         uses: hashicorp/vault-action@v2
         with:
