@@ -14,7 +14,7 @@ jobs:
           method: jwt
           role: ${{ secrets.VAULT_OIDC_ROLE }}
           url: ${{ secrets.VAULT_URL }}
-          namespace: admin/demo-namespace
+          namespace: $VAULT_NAMESPACE
           secrets: |
             kv/data/actions-demo/ci app_secret | APP_SECRET
       - name: Output things
