@@ -1,0 +1,26 @@
+name: VaultExample-OIDC
+# Run this workflow every time a new commit pushed to the repository
+on: workflow_dispatch
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write # This is required for requesting the JWT
+      contents: read  # This is required for actions/checkout
+    steps:
+      - name: Import Secrets
+        uses: hashicorp/vault-action@v2
+        with:
+          method: jwt
+          role: ${{ secrets.VAULT_OIDC_ROLE }}
+          url: ${{ secrets.VAULT_URL }}
+          namespace: admin/demo-namespace
+          secrets: |
+            kv/data/actions-demo/ci app_secret | APP_SECRET
+      - name: Output things
+      # echo Synced API KEY: ${{ secrets.VAULT_SYNCED_API_KEY }} | sed 's/./& /g'
+        run: |
+          echo APP Secret: ${{ env.APP_A_API_KEY }}  | sed 's/./& /g'
+          
+
+
