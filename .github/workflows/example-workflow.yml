@@ -8,11 +8,6 @@ jobs:
       id-token: write # This is required for requesting the JWT
       contents: read  # This is required for actions/checkout
     steps:
-      - name: Debug - Output Vault Variables
-        run: |
-          echo "VAULT_OIDC_ROLE: ${{ vars.VAULT_OIDC_ROLE }}"
-          echo "VAULT_URL: ${{ vars.VAULT_URL }}"
-          echo "VAULT_NAMESPACE: ${{ vars.VAULT_NAMESPACE }}"
       - name: Import Secrets
         uses: hashicorp/vault-action@v2
         with:
@@ -25,9 +20,9 @@ jobs:
           secrets: |
             kv/data/actions-demo/ci app_secret | APP_SECRET
       - name: Output things
-      # echo Synced API KEY: ${{ secrets.VAULT_SYNCED_API_KEY }} | sed 's/./& /g'
         run: |
           echo APP Secret: ${{ env.APP_SECRET }}  | sed 's/./& /g'
+          echo Synced API KEY: ${{ secrets.VAULT_SYNCED_API_KEY }} | sed 's/./& /g'
           
 
 
